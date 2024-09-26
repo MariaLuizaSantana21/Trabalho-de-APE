@@ -5,13 +5,16 @@ def valida_int(pergunta, min, max):
     return valor
 
 def conferir_informacao(CodC):
-    arquivo = open("consulta_cand_2024_PB.csv", "r")
-    codigo = CodC
-    for linha in arquivo:
-        dados = linha.split(";")
-        if dados[15].replace('"', '') == codigo:
-            return True
-    return False
+    try:
+        arquivo = open("consulta_cand_2024_PB.csv", "r")
+        codigo = CodC
+        for linha in arquivo:
+            dados = linha.split(";")
+            if dados[15].replace('"', '') == codigo:
+                return True
+        return False
+    finally:
+        arquivo.close()
     
 def listar_informacao(CodC):
     arquivo = open("consulta_cand_2024_PB.csv", "r")
