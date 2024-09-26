@@ -20,14 +20,14 @@ else:
   if opcao == '1':
     system("clear")
    #listar_candidatos() - Funções a serem implementadas
-elif opcao == '2': 
-   system("clear")
+  elif opcao == '2': 
+     system("clear")
    #exibir_informações()      ''
-elif opcao == '3':
-   system("clear")
+  elif opcao == '3':
+     system("clear")
     #gerar_estatisticas()     ''
-elif opcao == '4':
-    system("clear")
+  elif opcao == '4':
+     system("clear")
 
-    exit()
+     exit()
     #break

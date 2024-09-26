@@ -25,6 +25,54 @@ def listar_informacao(CodC):
             print(f"Nome do(a) candidato(a): {dados[17]}\nNome na urna: {dados[18]}\nNúmero: {dados[16]}\nPartido: {dados[26]}")
     arquivo.close()
 
+
+def conferir_infor(SG_UE):
+    try:
+        arquivo = open("consulta_cand_2024_PB.csv", "r")
+        codig = SG_UE
+        for linha in arquivo:
+            dados = linha.split(";")
+            if dados[11].replace('"', '') == codig:
+                return True
+        return False
+    finally:
+        arquivo.close()
+
+
+def listar_infor(SG_UE):
+    arquivo = open("consulta_cand_2024_PB.csv", "r")
+    codig = SG_UE
+    for linha in arquivo:
+        dados = linha.split(";")
+        if dados[11].replace('"', '') == codig:
+            print(f"Municipio escolhido: {dados[12]}")
+    arquivo.close()    
+
+
+def conferir_inform(CD_CARGO):
+    try:
+        arquivo = open("consulta_cand_2024_PB.csv", "r")
+        codig = CD_CARGO
+        for linha in arquivo:
+            dados = linha.split(";")
+            if dados[13].replace('"', '') == codig:
+                return True
+        return False
+    finally:
+        arquivo.close()
+
+
+def listar_inform(CD_CARGO, SG_UE):
+    arquivo = open("consulta_cand_2024_PB.csv", "r")
+    codig = CD_CARGO
+    codig2=SG_UE
+    for linha in arquivo:
+        dados = linha.split(";")
+        if dados[13].replace('"', '') == codig and dados[11].replace('"', '') == codig2:
+            print(f"Nome do(a) candidato(a): {dados[17]}\nNome na urna: {dados[18]}\nNúmero: {dados[16]}\nPartido: {dados[26]}")
+    arquivo.close()    
+
+
 #Programa Principal
 while True:
     print("-" * 55)
@@ -41,7 +89,17 @@ while True:
         # Código do Município/Código do cargo e chamar a função listar_candidatos
     if opcao == 1:
         SG_UE = input("Código do Muncípio: ")
+        if conferir_infor(SG_UE):
+            listar_infor(SG_UE)
+        else:
+            print("MUNICÍPIO NÃO ENCONTRADO!")
         CD_CARGO = input("Código do Cargo: ")
+        if conferir_inform(CD_CARGO):
+            listar_inform(CD_CARGO, SG_UE)
+
+        else:
+            print("cargo NÃO ENCONTRADO!")
+        
     
     # Condição para passar:
         # Código do Candidato e chamar a função listar_informacao se o retorno do "if" for TRUE
