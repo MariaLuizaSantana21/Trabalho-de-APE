@@ -80,16 +80,17 @@ def abrir_pagina():
 
 #Programa Principal
 while True:
-    print("-" * 25 + "MENU" + "-" * 25)
-    print("| MENU: ")
-    print("| Para Código do Município e Código do cargo, digite: 1")
-    print("| Para Código do candidato, digite: 2")
-    print("| Para Estatisticas eleições 2024, digite: 3")
-    print("| Sair, digite: 4")
-    print("-" * 54)
+    de = 35 * '-'
+    print('--------- MENU PRINCIPAL ----------')
+    print('|    [1] - Listar candidatos      |')
+    print('|    [2] - Saber informações      |')
+    print('|    [3] - Gerar estatísticas     |')
+    print('|    [4] - Sair                   |')
+    print(de)
 
     # Função para forçar apenas os valores de acesso contidos no menu
-    opcao = valida_int("Opção desejada: ", 1, 4)
+    opcao = valida_int("Selecione uma das opções: ", 1, 4)
+    print(de)
 
     # Condição para passar:
         # Código do Município/Código do cargo e chamar as funções listar_irfor e listar_inform apenas se o retorno do "if" for TRUE
@@ -104,7 +105,7 @@ while True:
             listar_inform(CD_CARGO, SG_UE)
 
         else:
-            print("cargo NÃO ENCONTRADO!")
+            print("CARGO NÃO ENCONTRADO!")
         
     
     # Condição para passar:
