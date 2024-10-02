@@ -4,28 +4,7 @@ def valida_int(pergunta, min, max):
         valor = int(input(pergunta))
     return valor
 
-def conferir_informacao(CodC):
-    try:
-        arquivo = open("consulta_cand_2024_PB.csv", "r")
-        codigo = CodC
-        for linha in arquivo:
-            dados = linha.split(";")
-            if dados[15].replace('"', '') == codigo:
-                return True
-        return False
-    finally:
-        arquivo.close()
-    
-def listar_informacao(CodC):
-    arquivo = open("consulta_cand_2024_PB.csv", "r")
-    codigo = CodC
-    for linha in arquivo:
-        dados = linha.split(";")
-        if dados[15].replace('"', '') == codigo:
-            print(f"Nome do(a) candidato(a): {dados[17]}\nNome na urna: {dados[18]}\nNúmero: {dados[16]}\nPartido: {dados[26]}")
-    arquivo.close()
-
-
+#Segunda parte
 def conferir_infor(SG_UE):
     try:
         arquivo = open("consulta_cand_2024_PB.csv", "r")
@@ -72,25 +51,48 @@ def listar_inform(CD_CARGO, SG_UE):
             print(f"Nome do(a) candidato(a): {dados[17]}\nNome na urna: {dados[18]}\nNúmero: {dados[16]}\nPartido: {dados[26]}")
     arquivo.close()  
 
+# Terceira parte
+def conferir_informacao(CodC):
+    try:
+        arquivo = open("consulta_cand_2024_PB.csv", "r")
+        codigo = CodC
+        for linha in arquivo:
+            dados = linha.split(";")
+            if dados[15].replace('"', '') == codigo:
+                return True
+        return False
+    finally:
+        arquivo.close()
+    
+def listar_informacao(CodC):
+    arquivo = open("consulta_cand_2024_PB.csv", "r")
+    codigo = CodC
+    for linha in arquivo:
+        dados = linha.split(";")
+        if dados[15].replace('"', '') == codigo:
+            print(f"Nome do(a) candidato(a): {dados[17]}\nNome na urna: {dados[18]}\nNúmero: {dados[16]}\nPartido: {dados[26]}")
+    arquivo.close()
+
+#Biblioteca
 import os
 def abrir_pagina():
     os.system("start Estatisticas.html")
 
 #Programa Principal
 while True:
-    print("-" * 55)
+    print("-" * 25 + "MENU" + "-" * 25)
     print("| MENU: ")
     print("| Para Código do Município e Código do cargo, digite: 1")
     print("| Para Código do candidato, digite: 2")
     print("| Para Estatisticas eleições 2024, digite: 3")
     print("| Sair, digite: 4")
-    print("-" * 55)
+    print("-" * 54)
 
     # Função para forçar apenas os valores de acesso contidos no menu
     opcao = valida_int("Opção desejada: ", 1, 4)
 
     # Condição para passar:
-        # Código do Município/Código do cargo e chamar a função listar_candidatos
+        # Código do Município/Código do cargo e chamar as funções listar_irfor e listar_inform apenas se o retorno do "if" for TRUE
     if opcao == 1:
         SG_UE = input("Código do Muncípio: ")
         if conferir_infor(SG_UE):
@@ -106,7 +108,7 @@ while True:
         
     
     # Condição para passar:
-        # Código do Candidato e chamar a função listar_informacao se o retorno do "if" for TRUE
+        # Código do Candidato e chamar a função listar_informacao apenas se o retorno do "if" for TRUE
     elif opcao == 2:
         SQ_CANDIDATO = input("Código do Candidato: ")
         if conferir_informacao(SQ_CANDIDATO):
@@ -114,11 +116,9 @@ while True:
         else:
             print("CANDIDATO NÃO ENCONTRADO!")
 
-        #Estatisticas atuais
+    #Estatisticas atuais
     elif opcao ==3:
          abrir_pagina()
-
-
 
     # Condição para encerrar o programa
     else:
@@ -126,10 +126,7 @@ while True:
         break
 
 
-
-
-
-
+#Bibliotecas
 import pandas as pd
 from datetime import datetime #importei conversao de dados para data
 
